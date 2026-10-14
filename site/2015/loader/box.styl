@@ -1,0 +1,66 @@
+vkColor = #4d7198
+vkColorBlue = #688bb0
+@keyframes loadAnimation
+	0%
+		margin-left -1em
+	100%
+		margin-left 1em
+
+#box
+	position relative
+	height 14em
+	width 25em
+	margin 15px
+	background-color vkColor
+	&::after, &::before
+		content ''
+		position absolute
+		left 23em
+		top 14em
+		height 0
+		width 0
+		borderWidth = 1em
+		border-top borderWidth solid vkColor
+		border-right borderWidth solid vkColor
+		border-left borderWidth solid transparent
+		border-bottom borderWidth solid transparent
+	&::before
+		left 0em
+		border-right-color transparent
+		border-left-color vkColor
+	&:hover #canvas
+		animation-play-state running !important
+
+	#load
+		position absolute
+		top 5em
+		left 7.3em
+		height 3em
+		width 11em
+		overflow hidden
+		
+		background-color vkColorBlue
+		border-radius 5px
+		box-shadow inset 0 0 5px 2px vkColor
+
+		#canvas
+			position relative
+			width 17em
+			height 100%
+			left -3em
+
+			animation-name loadAnimation
+			animation-duration 0.5s
+			animation-iteration-count infinite
+			animation-timing-function linear
+			animation-play-state paused
+			
+			.line
+				float left
+				height 5em
+				width 1em
+				margin-left 1em
+				margin-top -1em
+
+				background-color vkColor
+				transform rotate(45deg)

@@ -1,0 +1,40 @@
+/* The 2015 loading bubble in 2026 CSS: two elements instead of eleven.
+   In 2015 it moved only under the mouse; a loader should always move,
+   so now it does, unless the visitor asks for reduced motion. */
+
+.loader {
+  --dark: oklch(0.53 0.08 254);
+  --light: oklch(0.63 0.09 252);
+
+  position: relative;
+  inline-size: 400px;
+  block-size: 256px;
+  background: var(--dark);
+  /* The bubble and its two tails, as one shape. */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 368px 224px, 32px 224px, 0 100%);
+
+  & .bar {
+    position: absolute;
+    inset: 80px auto auto 117px;
+    inline-size: 176px;
+    block-size: 48px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px 2px var(--dark);
+    /* The stripes were eight rotated divs sliding with margin-left. */
+    background: repeating-linear-gradient(-45deg, var(--light) 0 11.3px, var(--dark) 11.3px 22.6px);
+    background-size: 32px 100%;
+    animation: slide 0.5s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    & .bar {
+      animation: none;
+    }
+  }
+}
+
+@keyframes slide {
+  to {
+    background-position-x: 32px;
+  }
+}

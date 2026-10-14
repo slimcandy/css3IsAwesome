@@ -1,0 +1,178 @@
+.space {
+  min-height: 20rem;
+  background-color: #265169;
+  background-image: linear-gradient(#1b3140, #397aa4);
+  position: relative;
+  z-index: 1;
+}
+.space .stars {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 10%, transparent 0);
+  background-size: 1rem 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+@keyframes star {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    top: 100%;
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.space .stars .star {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0.3rem rgba(255, 255, 255, 0.5), 0 0 0.3rem rgba(255, 255, 255, 0.5), 0 0 0.3rem rgba(255, 255, 255, 0.5);
+  position: absolute;
+  z-index: 2;
+  animation-name: star;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rocket {
+  0% {
+    top: 4rem;
+    left: 50%;
+  }
+  33% {
+    top: 3.5rem;
+    left: 45%;
+    transform: rotateZ(-5deg);
+  }
+  66% {
+    top: 3.5rem;
+    left: 55%;
+    transform: rotateZ(5deg);
+  }
+  100% {
+    top: 4rem;
+    left: 50%;
+  }
+}
+.rocket {
+  position: absolute;
+  animation-name: rocket;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.rocket__head {
+  position: absolute;
+  background-color: #e2564d;
+  background-image: linear-gradient(90deg, #e2564d 0%, #e2564d 50%, #c2493e 50%, #c2493e 100%);
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  clip-path: polygon(50% 0, 84% 44%, 100% 100%, 0 100%, 16% 44%);
+  z-index: 3;
+}
+.rocket__body {
+  position: absolute;
+  top: 2rem;
+  background-color: white;
+  background-image: linear-gradient(90deg, #f8f8f1 0%, #f8f8f1 50%, #cfd4d0 50%, #cfd4d0 100%);
+  width: 4rem;
+  height: 8rem;
+  border-top-left-radius: 3rem 10rem;
+  border-top-right-radius: 3rem 10rem;
+  border-bottom-right-radius: 1rem 10rem;
+  border-bottom-left-radius: 1rem 10rem;
+  z-index: 3;
+}
+.rocket__flipper {
+  position: absolute;
+  background-color: #c2493e;
+  clip-path: polygon(0 0, 80% 40%, 100% 100%, 0 53%);
+  top: 8rem;
+  width: 2rem;
+  height: 3rem;
+  z-index: 2;
+}
+.rocket__flipper_right {
+  left: 3.5rem;
+}
+.rocket__flipper_left {
+  left: -1.5rem;
+  transform: rotateY(180deg);
+}
+.rocket__flipper_middle {
+  clip-path: polygon(30% 14%, 50% 0, 70% 14%, 50% 100%);
+  left: 0;
+  top: 8rem;
+  z-index: 4;
+  width: 4rem;
+  height: 4rem;
+  background-image: linear-gradient(90deg, #e2564d 0%, #e2564d 50%, #c2493e 50%, #c2493e 100%);
+}
+.rocket__porthole {
+  width: 2rem;
+  height: 2rem;
+  background-color: #20517f;
+  border-radius: 50%;
+  z-index: 4;
+  left: 1rem;
+  top: 3.5rem;
+  position: absolute;
+}
+.rocket__porthole::after {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: #6fb3bf;
+  border-radius: 50%;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+.rocket__flame {
+  z-index: 2;
+  width: 8rem;
+  height: 5rem;
+  top: 9.5rem;
+  left: -2.5rem;
+  position: absolute;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes flame1 {
+  0% {
+    clip-path: polygon(74% 0, 86% 65%, 83% 88%, 65% 66%, 58% 90%, 49% 67%, 36% 90%, 38% 64%, 5% 94%, 38% 0);
+  }
+  50% {
+    clip-path: polygon(74% 0, 86% 65%, 92% 95%, 72% 75%, 62% 93%, 43% 78%, 36% 98%, 28% 64%, 15% 87%, 38% 0);
+  }
+  100% {
+    clip-path: polygon(74% 0, 86% 65%, 83% 88%, 65% 66%, 58% 90%, 49% 67%, 36% 90%, 38% 64%, 5% 94%, 38% 0);
+  }
+}
+@keyframes flame2 {
+  0% {
+    clip-path: polygon(74% 0, 81% 28%, 79% 66%, 61% 34%, 62% 93%, 50% 46%, 39% 65%, 49% 12%, 31% 54%, 38% 0);
+  }
+  50% {
+    clip-path: polygon(74% 0, 83% 50%, 68% 40%, 61% 34%, 61% 55%, 51% 44%, 34% 50%, 41% 27%, 21% 40%, 38% 0);
+  }
+  100% {
+    clip-path: polygon(74% 0, 81% 28%, 79% 66%, 61% 34%, 62% 93%, 50% 46%, 39% 65%, 49% 12%, 31% 54%, 38% 0);
+  }
+}
+.rocket__flame_1 {
+  background-color: #d89d25;
+  animation-name: flame1;
+  animation-duration: 1s;
+}
+.rocket__flame_2 {
+  background-color: #ead488;
+  animation-name: flame2;
+  animation-duration: 1.5s;
+}

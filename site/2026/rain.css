@@ -1,0 +1,97 @@
+/* The 2015 TV Rain logo study in 2026 CSS. Sizes are in container units
+   (cqi: 1% of the box's width), so the logo scales with its box.
+   The 7.5 MB video behind it is now rain drawn with gradients. */
+
+.rain {
+  --pink: oklch(0.64 0.27 2);
+
+  container-type: inline-size;
+  position: relative;
+  inline-size: 768px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  background:
+    radial-gradient(circle at 18% 70%, oklch(0.75 0.12 80 / 0.35), transparent 9%),
+    radial-gradient(circle at 72% 82%, oklch(0.7 0.15 25 / 0.3), transparent 7%),
+    radial-gradient(circle at 88% 30%, oklch(0.8 0.08 220 / 0.3), transparent 11%),
+    linear-gradient(oklch(0.32 0.03 245), oklch(0.5 0.04 230));
+
+  /* Three layers of falling streaks. Odd tile sizes hide the repeat. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    rotate: 10deg;
+    background-image:
+      radial-gradient(0.5px 14px, oklch(1 0 0 / 0.7), transparent),
+      radial-gradient(0.5px 10px, oklch(1 0 0 / 0.5), transparent),
+      radial-gradient(1px 20px, oklch(1 0 0 / 0.35), transparent);
+    background-size: 37px 113px, 53px 167px, 71px 211px;
+    background-position: 0 0, 19px 41px, 7px 90px;
+    animation: fall 1s linear infinite;
+  }
+
+  & :is(.name, .slogan, .live) {
+    position: absolute;
+    margin: 0;
+    font-weight: bold;
+    line-height: 1.15;
+  }
+
+  & .name {
+    inset: 1cqi auto auto 7.8cqi;
+    font-size: 21.5cqi;
+    color: var(--pink);
+    text-shadow: 0 0 2px var(--pink);
+    white-space: nowrap;
+
+    & span {
+      display: inline-block;
+      transform: skewX(-12deg);
+    }
+  }
+
+  /* 2015: a gradient triangle and a rotated border triangle as tails.
+     2026: clip-path cuts the slant into the ribbon itself. */
+  & .slogan {
+    inset: 25.4cqi 9.9cqi auto 3.9cqi;
+    padding: 0.4cqi 0 0.4cqi 8.8cqi;
+    font-size: 6.1cqi;
+    color: white;
+    background: var(--pink);
+    clip-path: polygon(3.9cqi 0, 100% 0, 100% 100%, 0 100%);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 4.2cqi;
+      inline-size: 4cqi;
+      background: white;
+      clip-path: polygon(0 50%, 100% 0, 60% 100%);
+    }
+  }
+
+  & .live {
+    inset: 34.5cqi auto auto 57cqi;
+    padding: 0 6.4cqi 0 2.6cqi;
+    font-size: 10cqi;
+    color: black;
+    background: white;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.6em) 100%, 0 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      animation: none;
+    }
+  }
+}
+
+/* Each layer falls a whole number of tiles, so the loop has no seam. */
+@keyframes fall {
+  to {
+    background-position: 0 452px, 19px 542px, 7px 512px;
+  }
+}

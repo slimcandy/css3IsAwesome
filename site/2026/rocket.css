@@ -1,0 +1,165 @@
+/* The 2021 rocket in 2026 CSS. The 100 JavaScript stars are three gradient
+   layers, and the rocket lifts off as you scroll past it. */
+
+@property --twinkle {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+.space {
+  --red: oklch(0.64 0.2 28);
+  --red-shade: oklch(0.56 0.17 29);
+
+  position: relative;
+  inline-size: 640px;
+  block-size: 320px;
+  overflow: hidden;
+  background: linear-gradient(oklch(0.3 0.05 238), oklch(0.53 0.1 243));
+
+  /* Stars that fall past the rocket, so the rocket seems to climb. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(3px 3px at 20% 30%, oklch(1 0 0 / var(--twinkle)), transparent),
+      radial-gradient(2px 2px at 70% 60%, oklch(1 0 0 / 0.8), transparent),
+      radial-gradient(1.5px 1.5px at 40% 80%, oklch(1 0 0 / 0.6), transparent);
+    background-size: 89px 97px, 61px 71px, 43px 53px;
+    animation:
+      stars 6s linear infinite,
+      twinkle 1.7s ease-in-out infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    & * {
+      animation: none !important;
+    }
+  }
+}
+
+@keyframes stars {
+  to {
+    background-position: 0 194px, 0 284px, 0 371px;
+  }
+}
+
+@keyframes twinkle {
+  to {
+    --twinkle: 0.2;
+  }
+}
+
+.rocket {
+  position: absolute;
+  inset: 64px auto auto 50%;
+  margin-inline-start: -32px;
+  animation: sway 15s linear infinite;
+
+  & > * {
+    position: absolute;
+  }
+
+  /* Two-tone parts: the left half lit, the right half in shade. */
+  & .head,
+  & .fin.middle {
+    background: linear-gradient(90deg, var(--red) 50%, var(--red-shade) 50%);
+  }
+
+  & .head {
+    inset: 0 auto auto 16px;
+    inline-size: 32px;
+    block-size: 32px;
+    clip-path: polygon(50% 0, 84% 44%, 100% 100%, 0 100%, 16% 44%);
+    z-index: 3;
+  }
+
+  & .body {
+    inset: 32px auto auto 0;
+    inline-size: 64px;
+    block-size: 128px;
+    border-radius: 48px 48px 16px 16px / 160px 160px 160px 160px;
+    z-index: 3;
+
+    /* The porthole was its own element; now it's two gradients on the body. */
+    background:
+      radial-gradient(circle at 32px 40px, oklch(0.75 0.08 205) 8px, oklch(0.42 0.1 252) 8.5px 16px, transparent 16.5px),
+      linear-gradient(90deg, oklch(0.98 0.01 106) 50%, oklch(0.86 0.01 150) 50%);
+  }
+
+  & .fin {
+    inset: 128px auto auto 56px;
+    inline-size: 32px;
+    block-size: 48px;
+    background: var(--red-shade);
+    clip-path: polygon(0 0, 80% 40%, 100% 100%, 0 53%);
+    z-index: 2;
+
+    &.left {
+      inset-inline-start: -24px;
+      scale: -1 1;
+    }
+
+    &.middle {
+      inset-inline-start: 0;
+      inline-size: 64px;
+      block-size: 64px;
+      clip-path: polygon(30% 14%, 50% 0, 70% 14%, 50% 100%);
+      z-index: 4;
+    }
+  }
+
+  & .flame {
+    inset: 152px auto auto -40px;
+    inline-size: 128px;
+    block-size: 80px;
+    z-index: 2;
+    background: oklch(0.76 0.16 70);
+    animation: flame 1s linear infinite;
+
+    & + .flame {
+      background: oklch(0.9 0.12 95);
+      animation: flame-inner 1.5s linear infinite;
+    }
+  }
+}
+
+/* Lift-off is tied to the page scroll, not to time. Browsers without
+   scroll-driven animations keep the rocket hovering. */
+@supports (animation-timeline: view()) {
+  /* The timeline follows the space, not the rocket: the rocket itself moves. */
+  .space {
+    view-timeline: --space;
+  }
+
+  .rocket {
+    animation:
+      sway 15s linear infinite,
+      lift-off linear both;
+    animation-timeline: auto, --space;
+    animation-range: normal, cover 55% exit 60%;
+  }
+}
+
+@keyframes sway {
+  33% { translate: -32px -8px; rotate: -5deg; }
+  66% { translate: 32px -8px; rotate: 5deg; }
+}
+
+@keyframes lift-off {
+  to {
+    top: -260px;
+  }
+}
+
+@keyframes flame {
+  50% { clip-path: polygon(74% 0, 86% 65%, 92% 95%, 72% 75%, 62% 93%, 43% 78%, 36% 98%, 28% 64%, 15% 87%, 38% 0); }
+  0%, 100% { clip-path: polygon(74% 0, 86% 65%, 83% 88%, 65% 66%, 58% 90%, 49% 67%, 36% 90%, 38% 64%, 5% 94%, 38% 0); }
+}
+
+@keyframes flame-inner {
+  50% { clip-path: polygon(74% 0, 83% 50%, 68% 40%, 61% 34%, 61% 55%, 51% 44%, 34% 50%, 41% 27%, 21% 40%, 38% 0); }
+  0%, 100% { clip-path: polygon(74% 0, 81% 28%, 79% 66%, 61% 34%, 62% 93%, 50% 46%, 39% 65%, 49% 12%, 31% 54%, 38% 0); }
+}

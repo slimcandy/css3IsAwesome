@@ -1,0 +1,10 @@
+/* Not from 2021: fixes the space at the size used for the comparison. */
+body {
+  margin: 0;
+}
+
+.space {
+  width: 640px;
+  height: 320px;
+  overflow: hidden;
+}

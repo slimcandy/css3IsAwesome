@@ -1,0 +1,226 @@
+@font-face
+	font-family SeasideResort
+	src local("SeasideResort"), url(../fonts/SEASRN.ttf)format('truetype')
+@keyframes bikeLoop
+	for i in 0..10
+		{10%*i}
+			transform rotate(i*36deg)
+@keyframes wheelColor
+	0%
+		border-radius 50%
+	50%#ffd700
+		border-radius 48%
+	100%
+		border-radius 50%
+@keyframes backgroundLoop
+	from
+		background-position 0% 0%
+	to
+		background-position -800px 0%
+@keyframes cssBlinking
+	0%,12%,18.999%,23%,31.999%,37%,44.999%,46%,49.999%,51%,58.999%,61%,68.999%,71%,85.999%,96%,100%
+		opacity .99
+		text-shadow 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed
+	19%,22.99%,32%,36.999%,45%,45.999%,50%,50.99%,59%,60.999%,69%,70.999%,86%,95.999%
+		opacity 0.4
+		text-shadow none
+@keyframes awesomeBlinking
+	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%
+		opacity .99
+		text-shadow 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff
+	20%, 21.999%, 63%, 63.999%, 65%, 69.999%
+		opacity 0.4
+		text-shadow none
+#bike
+	width 450px
+	height 484px
+	position relative
+	margin 20px 0
+	overflow hidden
+	
+	filter grayscale(1)
+	border-radius 5px
+	background-image url(../images/desert.jpg)
+	box-shadow 0 3px 3px #BFAD95, 0 5px 5px #BFAD95, 0 10px 15px #BFAD95
+	animation backgroundLoop 3.5s linear infinite paused
+	transition filter 1s
+	&:hover
+		animation-play-state running
+		filter grayscale(0)
+		#frontwheel
+		#backwheel					
+			animation-play-state running
+	
+	#logo
+		position absolute
+		width 100%
+		height 79px
+		padding 1em 0
+
+		text-align center
+		perspective 500px
+
+		&:hover
+			background-color rgba(0, 0, 0, 0.7)
+			h1
+				color white
+				transform rotate(0)
+				text-shadow 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff
+				span.cssLabel
+					color red
+					text-shadow 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed
+					span
+						animation-name cssBlinking
+						animation-duration 10s
+						animation-iteration-count infinite
+						animation-timing-function linear
+						animation-play-state running
+				span.awesome
+					text-shadow 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff
+					animation-name awesomeBlinking
+					animation-duration 11s
+					animation-iteration-count infinite
+					animation-timing-function linear
+					animation-play-state running
+		
+		h1
+			font-family SeasideResort, sans-serif
+			color black
+
+			transition color .1s, transform 0.3s
+			transform-origin 0% 50%
+			transform rotate(3deg)
+				
+
+	[id*="frame"]
+		height 10px
+		background-color red
+		position absolute
+		z-index 2
+		border-radius 5px
+		animation frameBoxShadow 1s infinite
+		animation-play-state paused
+
+	plusHeight = 102px
+	#framefork
+	#frameseattube
+		top 233px + plusHeight
+		left 270px
+		width 131px
+		transform rotate(41deg)
+	#framefork
+		top 222px + plusHeight
+		left 273px
+		width 118
+		transform rotate(74deg)
+	#frameseattube
+		left 72px
+	#frametop
+		width 229px
+		top 165px + plusHeight
+		left 104px
+		transform-origin 100% 50%
+		transform rotate(-12deg)
+	#framechainstay
+		top 276px + plusHeight
+		left 104px
+		width 85px
+	#frameseatstay
+		top 234px + plusHeight
+		left 50px
+		height 6px !important
+		width 99px
+		transform rotate(-101deg)
+	#framedowntube
+		width 170px
+		left 165px
+		top 223px + plusHeight
+		transform rotate(-40deg)
+
+	.handlebars
+		position relative
+		left 319px
+		top 150px + plusHeight
+		z-index 3
+		#post
+			background-color silver
+			height 10px
+			width 10px
+			position absolute
+			top 10px
+		#bar
+		#handle
+			position absolute
+			top 5px
+			width 50px
+			height 10px
+			background-color silver
+			border-radius 20px
+			transform-origin 0% 50%
+			transform rotate(-20deg)
+		#handle
+			background-color black
+			width 25px
+			height 12px
+			transform rotate(-20deg) translateX(25px)
+	#seat
+		background-color black
+		position absolute
+		left 76px
+		top 185px + plusHeight
+		z-index 3
+		border-radius 20px
+		#base
+			width 30px
+			height 25px
+		#nose
+			background-color black
+			width 40px
+			height 15px
+			position absolute
+			top 0
+			left 20px
+			border-bottom-right-radius 15px
+
+	#backwheel
+	#frontwheel
+		width 120px
+		height 120px
+		position absolute
+		border 10px solid black
+		top 314px
+
+		border-radius 50%
+		box-shadow inset 0 0 0 5px purple
+		animation-name bikeLoop, wheelColor
+		animation-duration 1s
+		animation-iteration-count infinite
+		animation-play-state paused
+		
+	.center
+		position absolute
+		top 56px
+		left 58px
+		width 10px
+		height 10px
+		border-radius 50%
+		background-color black
+	[class*="spoke"]
+		height 1px
+		width 62px
+		background-color black
+		position absolute
+		top 60px		
+		transform-origin 100% 50%
+	.spoke1
+		transform rotate(72deg)
+	.spoke2
+		transform rotate(144deg)
+	.spoke3
+		transform rotate(216deg)
+	.spoke4
+		transform rotate(288deg)
+	#backwheel
+		left 35px			
+	#frontwheel
+		left 278px
