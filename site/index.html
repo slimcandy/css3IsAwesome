@@ -12,20 +12,32 @@
     <link rel="stylesheet" href="2026/rain.css" />
     <link rel="stylesheet" href="2026/loader.css" />
     <link rel="stylesheet" href="2026/rocket.css" />
+    <link rel="stylesheet" href="ai/bicycle.css" />
+    <link rel="stylesheet" href="ai/rocket.css" />
+    <link rel="stylesheet" href="ai/rain.css" />
+    <link rel="stylesheet" href="ai/loader.css" />
     <script src="page.js" defer></script>
   </head>
   <body class="bg-wall text-ink antialiased">
     <header class="sticky top-0 z-20 border-b border-ink/10 bg-wall/85 backdrop-blur">
-      <nav aria-label="Drawings" class="mx-auto flex max-w-6xl items-center gap-x-4 overflow-x-auto px-4 py-3 sm:px-6">
+      <div class="mx-auto flex max-w-6xl items-center gap-x-4 px-4 py-3 sm:px-6">
         <a href="#top" class="shrink-0 font-display text-lg max-sm:hidden">CSS is awesome</a>
-        <div class="flex shrink-0 gap-x-0.5 text-sm font-medium sm:ml-auto sm:gap-x-1">
-          <a href="#bicycle" class="rounded-md px-2 py-2 text-ink/70 sm:px-3 hover:bg-ink/5 hover:text-ink">Bicycle</a>
-          <a href="#rain" class="rounded-md px-2 py-2 text-ink/70 sm:px-3 hover:bg-ink/5 hover:text-ink">TV Rain</a>
-          <a href="#loader" class="rounded-md px-2 py-2 text-ink/70 sm:px-3 hover:bg-ink/5 hover:text-ink">Loader</a>
-          <a href="#rocket" class="rounded-md px-2 py-2 text-ink/70 sm:px-3 hover:bg-ink/5 hover:text-ink">Rocket</a>
-          <a href="#about" class="rounded-md px-2 py-2 text-ink/70 sm:px-3 hover:bg-ink/5 hover:text-ink">About</a>
+        <nav aria-label="Drawings" class="flex min-w-0 gap-x-0.5 overflow-x-auto text-sm font-medium whitespace-nowrap max-sm:mask-r-from-75% sm:ml-auto sm:gap-x-1">
+          <a href="#bicycle" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Bicycle</a>
+          <a href="#rain" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">TV Rain</a>
+          <a href="#loader" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Loader</a>
+          <a href="#rocket" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Rocket</a>
+          <a href="#about" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">About</a>
+        </nav>
+        <!-- Tailwind Plus "toggle with right label" -->
+        <div class="flex shrink-0 items-center gap-x-2 max-sm:ml-auto">
+          <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-ink/15 p-0.5 inset-ring inset-ring-ink/5 outline-offset-2 outline-accent transition-colors duration-200 ease-in-out has-checked:bg-accent has-focus-visible:outline-2">
+            <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-ink/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
+            <input id="ai-power" type="checkbox" aria-describedby="ai-power-hint" class="absolute inset-0 size-full cursor-pointer appearance-none focus:outline-hidden" />
+          </div>
+          <label for="ai-power" class="cursor-pointer text-sm font-semibold whitespace-nowrap">AI power</label>
         </div>
-      </nav>
+      </div>
     </header>
 
     <main id="top" class="mx-auto max-w-6xl px-4 sm:px-6">
@@ -35,6 +47,9 @@
         <p class="mt-6 max-w-2xl text-lg/8 text-pretty text-ink/75">
           Four drawings made only of HTML elements and CSS. I drew three of them in 2015 and the rocket in 2021, then redrew all four in 2026 with what CSS can do now.
           <strong class="font-semibold text-ink">Drag the divider</strong> on a drawing to compare the two versions, and read both stylesheets below it.
+        </p>
+        <p id="ai-power-hint" class="mt-4 max-w-2xl text-lg/8 text-pretty text-ink/75">
+          Then switch on <strong class="font-semibold text-ink">AI power</strong>: the right side becomes the version I made with Claude Code, each drawing as good as we could get it in as little CSS as possible.
         </p>
       </section>
 
@@ -48,7 +63,7 @@
 
         <div class="exhibit-body">
           <div class="compare" data-width="450" data-height="484" data-crop="8 20" data-old="2015">
-            <div class="layer">
+            <div class="layer no-ai">
               <div class="bike" tabindex="0" role="img" aria-label="A bicycle drawn with CSS. Hover, focus or tap it to ride.">
                 <p class="title" aria-hidden="true"><span class="css">CS<span class="flicker">S</span></span> is aw<span class="flicker slow">e</span>so<span class="flicker slow">m</span>e</p>
                 <i class="tube top"></i>
@@ -64,6 +79,9 @@
                 <i class="wheel front"></i>
               </div>
             </div>
+            <div class="layer ai">
+              <div class="ai-bike" role="img" aria-label="A bicycle riding through the desert at sunset under a neon sign">CSS is awesome<i></i></div>
+            </div>
             <div class="layer old"><iframe scrolling="no" src="2015/bicycle/" title="The 2015 bicycle" loading="lazy" tabindex="-1"></iframe></div>
           </div>
 
@@ -71,6 +89,7 @@
             <div><dt>2015</dt><dd>Stylus compiled to CSS with vendor prefixes. The wheels turn through 11 keyframes generated by a loop. Hover only.</dd></div>
             <div><dt>2026</dt><dd>Plain CSS. One <code>rotate: 1turn</code> keyframe, spokes drawn with a conic gradient, and the neon glow driven by one animated custom property.</dd></div>
             <div><dt>Elements</dt><dd>34 → 17</dd></div>
+            <div class="ai"><dt>AI power</dt><dd>2 elements. The frame, saddle and bars are one <code>clip-path</code> polygon, coloured by gradient bands. Road, dunes and spokes move at one speed, so the wheels roll instead of slide.</dd></div>
             <div><dt>Modern CSS</dt><dd class="flex flex-wrap gap-1.5"><span class="badge">nesting</span><span class="badge">@property</span><span class="badge">rotate</span><span class="badge">conic-gradient</span><span class="badge">:focus</span><span class="badge">oklch</span><span class="badge">reduced motion</span></dd></div>
           </dl>
         </div>
@@ -80,9 +99,13 @@
             <figcaption><span>2015 · styles.styl</span><span data-lines></span></figcaption>
             <pre><code><a href="2015/bicycle/styles.styl">Open styles.styl</a></code></pre>
           </figure>
-          <figure class="code" data-src="2026/bicycle.css">
+          <figure class="code no-ai" data-src="2026/bicycle.css">
             <figcaption><span>2026 · bicycle.css</span><span data-lines></span></figcaption>
             <pre><code><a href="2026/bicycle.css">Open bicycle.css</a></code></pre>
+          </figure>
+          <figure class="code ai" data-src="ai/bicycle.css">
+            <figcaption><span>AI power · bicycle.css</span><span data-lines></span></figcaption>
+            <pre><code><a href="ai/bicycle.css">Open bicycle.css</a></code></pre>
           </figure>
         </div>
       </article>
@@ -97,12 +120,15 @@
 
         <div class="exhibit-body">
           <div class="compare" data-width="768" data-height="432" data-crop="28 20" data-old="2015">
-            <div class="layer">
+            <div class="layer no-ai">
               <div class="rain" role="img" aria-label="The TV Rain logo, Дождь, over falling rain">
                 <p class="name" lang="ru" aria-hidden="true">До<span>///</span>дь</p>
                 <p class="slogan" aria-hidden="true">Optimistic channel</p>
                 <p class="live" aria-hidden="true">Live</p>
               </div>
+            </div>
+            <div class="layer ai">
+              <div class="ai-rain" role="img" aria-label="The TV Rain logo, Дождь, behind a wet window at night"><b lang="ru" aria-hidden="true">До<i>///</i>дь</b><span aria-hidden="true">Optimistic channel</span></div>
             </div>
             <div class="layer old"><iframe scrolling="no" src="2015/rain/" title="The 2015 TV Rain logo" loading="lazy" tabindex="-1"></iframe></div>
           </div>
@@ -112,6 +138,7 @@
             <div><dt>2026</dt><dd>Sizes in container units, so the logo fits any box. <code>clip-path</code> cuts the slanted ends. The pink is a wide-gamut <code>oklch()</code> colour.</dd></div>
             <div><dt>Elements</dt><dd>7 → 5</dd></div>
             <div><dt>Page weight</dt><dd>7.5 MB of video → 0 bytes</dd></div>
+            <div class="ai"><dt>AI power</dt><dd>4 elements. Rain falls behind drops on the glass and blurred city lights. The LIVE dot pulses through an animated <code>@property</code>.</dd></div>
             <div><dt>Modern CSS</dt><dd class="flex flex-wrap gap-1.5"><span class="badge">container units</span><span class="badge">clip-path</span><span class="badge">oklch</span><span class="badge">gradients</span><span class="badge">reduced motion</span></dd></div>
           </dl>
         </div>
@@ -121,9 +148,13 @@
             <figcaption><span>2015 · tvrain.styl</span><span data-lines></span></figcaption>
             <pre><code><a href="2015/rain/tvrain.styl">Open tvrain.styl</a></code></pre>
           </figure>
-          <figure class="code" data-src="2026/rain.css">
+          <figure class="code no-ai" data-src="2026/rain.css">
             <figcaption><span>2026 · rain.css</span><span data-lines></span></figcaption>
             <pre><code><a href="2026/rain.css">Open rain.css</a></code></pre>
+          </figure>
+          <figure class="code ai" data-src="ai/rain.css">
+            <figcaption><span>AI power · rain.css</span><span data-lines></span></figcaption>
+            <pre><code><a href="ai/rain.css">Open rain.css</a></code></pre>
           </figure>
         </div>
       </article>
@@ -138,8 +169,11 @@
 
         <div class="exhibit-body">
           <div class="compare" data-width="400" data-height="256" data-crop="23 15" data-old="2015">
-            <div class="layer">
+            <div class="layer no-ai">
               <div class="loader" role="img" aria-label="A loading bubble with moving stripes"><i class="bar"></i></div>
+            </div>
+            <div class="layer ai">
+              <div class="ai-loader" role="status">Loading…</div>
             </div>
             <div class="layer old"><iframe scrolling="no" src="2015/loader/" title="The 2015 loader" loading="lazy" tabindex="-1"></iframe></div>
           </div>
@@ -148,6 +182,7 @@
             <div><dt>2015</dt><dd>Eight rotated divs, floated and slid with <code>margin-left</code>. Two pseudo-elements with border tricks for the tails.</dd></div>
             <div><dt>2026</dt><dd>A repeating gradient that slides by one stripe and loops. One <code>clip-path</code> draws the bubble and both tails.</dd></div>
             <div><dt>Elements</dt><dd>11 → 2</dd></div>
+            <div class="ai"><dt>AI power</dt><dd>1 element. Real text, so screen readers hear “Loading”. The stripes and a shine move in one loop, and the tail is one <code>clip-path</code> triangle.</dd></div>
             <div><dt>Modern CSS</dt><dd class="flex flex-wrap gap-1.5"><span class="badge">clip-path</span><span class="badge">repeating-linear-gradient</span><span class="badge">logical properties</span><span class="badge">reduced motion</span></dd></div>
           </dl>
         </div>
@@ -157,9 +192,13 @@
             <figcaption><span>2015 · box.styl</span><span data-lines></span></figcaption>
             <pre><code><a href="2015/loader/box.styl">Open box.styl</a></code></pre>
           </figure>
-          <figure class="code" data-src="2026/loader.css">
+          <figure class="code no-ai" data-src="2026/loader.css">
             <figcaption><span>2026 · loader.css</span><span data-lines></span></figcaption>
             <pre><code><a href="2026/loader.css">Open loader.css</a></code></pre>
+          </figure>
+          <figure class="code ai" data-src="ai/loader.css">
+            <figcaption><span>AI power · loader.css</span><span data-lines></span></figcaption>
+            <pre><code><a href="ai/loader.css">Open loader.css</a></code></pre>
           </figure>
         </div>
       </article>
@@ -174,7 +213,7 @@
 
         <div class="exhibit-body">
           <div class="compare" data-width="640" data-height="320" data-crop="0 0" data-old="2021">
-            <div class="layer">
+            <div class="layer no-ai">
               <div class="space" role="img" aria-label="A rocket flying through falling stars">
                 <div class="rocket">
                   <i class="head"></i>
@@ -187,6 +226,9 @@
                 </div>
               </div>
             </div>
+            <div class="layer ai">
+              <div class="ai-space" role="img" aria-label="A rocket with a flickering exhaust flying past a planet"><i></i></div>
+            </div>
             <div class="layer old"><iframe scrolling="no" src="2021/rocket/" title="The 2021 rocket" loading="lazy" tabindex="-1"></iframe></div>
           </div>
 
@@ -194,6 +236,7 @@
             <div><dt>2021</dt><dd>Sass, and a React component that renders 100 star divs with random sizes and speeds. Some stars got a 0 s duration and never moved.</dd></div>
             <div><dt>2026</dt><dd>Stars are three tiled gradients falling at different speeds, with a twinkle from an animated <code>@property</code>. Lift-off is a scroll-driven animation.</dd></div>
             <div><dt>Elements</dt><dd>111 → 9</dd></div>
+            <div class="ai"><dt>AI power</dt><dd>2 elements. The outline is one polygon; nose, fins, stripe and window are gradient layers inside it. The exhaust is a blurred teardrop that flickers.</dd></div>
             <div><dt>Modern CSS</dt><dd class="flex flex-wrap gap-1.5"><span class="badge">animation-timeline</span><span class="badge">@property</span><span class="badge">translate</span><span class="badge">scale</span><span class="badge">@supports</span><span class="badge">reduced motion</span></dd></div>
           </dl>
         </div>
@@ -203,9 +246,13 @@
             <figcaption><span>2021 · Rocket.scss</span><span data-lines></span></figcaption>
             <pre><code><a href="2021/rocket/Rocket.scss">Open Rocket.scss</a></code></pre>
           </figure>
-          <figure class="code" data-src="2026/rocket.css">
+          <figure class="code no-ai" data-src="2026/rocket.css">
             <figcaption><span>2026 · rocket.css</span><span data-lines></span></figcaption>
             <pre><code><a href="2026/rocket.css">Open rocket.css</a></code></pre>
+          </figure>
+          <figure class="code ai" data-src="ai/rocket.css">
+            <figcaption><span>AI power · rocket.css</span><span data-lines></span></figcaption>
+            <pre><code><a href="ai/rocket.css">Open rocket.css</a></code></pre>
           </figure>
         </div>
       </article>

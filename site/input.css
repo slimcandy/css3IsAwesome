@@ -237,3 +237,15 @@
     }
   }
 }
+
+/* "AI power" swaps the 2026 drawings, captions and code for the AI ones. */
+@layer components {
+  :root:not(:has(#ai-power:checked)) .ai,
+  :root:has(#ai-power:checked) .no-ai {
+    display: none;
+  }
+  :root:has(#ai-power:checked) .compare::after {
+    content: "AI power";
+    background: var(--color-accent);
+  }
+}

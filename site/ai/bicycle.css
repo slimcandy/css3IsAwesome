@@ -1,0 +1,89 @@
+/* AI power: the bicycle at sunset, in two elements.
+   The frame is one polygon; the road, dunes and wheels move at one speed. */
+
+@property --spin { syntax: "<angle>"; inherits: true; initial-value: 0deg; }
+
+.ai-bike {
+  --sand: oklch(0.8 0.1 70);
+  position: relative;
+  inline-size: 450px;
+  block-size: 484px;
+  overflow: hidden;
+  padding-block-start: 40px;
+  box-sizing: border-box;
+  font: 44px/1 Limelight, sans-serif;
+  text-align: center;
+  color: oklch(0.97 0.05 340);
+  text-shadow: 0 0 4px oklch(0.75 0.3 340), 0 0 18px oklch(0.65 0.32 340), 0 0 48px oklch(0.6 0.3 340);
+  background:
+    repeating-linear-gradient(90deg, oklch(0.95 0.03 80) 0 28px, transparent 0 70px) 0 452px / 70px 3px repeat-x,
+    linear-gradient(transparent 437px, oklch(0.52 0.08 50) 0 441px, var(--sand) 0),
+    radial-gradient(160px 60px at 50% 100%, oklch(0.62 0.13 45) 98%, transparent) 0 377px / 260px 60px repeat-x,
+    radial-gradient(270px 70px at 50% 100%, oklch(0.5 0.13 30) 98%, transparent) 0 357px / 450px 70px repeat-x,
+    radial-gradient(circle at 70% 52%, oklch(0.97 0.1 95) 44px, oklch(0.85 0.2 60 / 0.6) 47px, transparent 120px),
+    linear-gradient(oklch(0.3 0.12 290), oklch(0.55 0.22 350) 45%, oklch(0.8 0.19 55) 75%);
+  animation: ride 3s linear infinite, buzz 4s steps(1) infinite;
+
+  /* The frame: tubes, saddle, bars and crank in one shape. Gradient bands
+     colour the saddle and bar tape black inside it. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(oklch(0.2 0 0) 0 0) 150px 208px / 75px 22px no-repeat,
+      linear-gradient(oklch(0.2 0 0) 0 0) 324px 226px / 40px 50px no-repeat,
+      linear-gradient(160deg, oklch(0.95 0.12 175), oklch(0.75 0.19 175) 40%, oklch(0.5 0.13 200));
+    clip-path: polygon(115px 358px, 212px 362px, 212px 370px, 115px 366px, 115px 358px, 112px 360px, 189px 260px, 195px 264px, 118px 364px, 112px 360px, 115px 358px, 207px 367px, 183px 251px, 193px 249px, 217px 365px, 207px 367px, 115px 358px, 190px 257px, 302px 241px, 304px 251px, 192px 267px, 190px 257px, 115px 358px, 208px 362px, 304px 266px, 312px 274px, 216px 370px, 208px 362px, 115px 358px, 309px 245px, 317px 279px, 305px 281px, 297px 247px, 309px 245px, 115px 358px, 315px 279px, 333px 329px, 325px 331px, 307px 281px, 315px 279px, 115px 358px, 332px 329px, 341px 361px, 335px 363px, 326px 331px, 332px 329px, 115px 358px, 185px 250px, 181px 224px, 187px 224px, 191px 250px, 185px 250px, 115px 358px, 156px 222px, 168px 213px, 214px 214px, 218px 221px, 196px 226px, 162px 228px, 156px 222px, 115px 358px, 300px 246px, 306px 231px, 312px 233px, 306px 248px, 300px 246px, 115px 358px, 309px 229px, 338px 233px, 338px 239px, 309px 235px, 309px 229px, 115px 358px, 341px 234px, 351px 250px, 345px 254px, 335px 238px, 341px 234px, 115px 358px, 351px 254px, 339px 268px, 333px 264px, 345px 250px, 351px 254px, 115px 358px);
+  }
+
+  /* The wheels: tyre, rim, hub and 12 spokes; the spokes turn, not the box. */
+  &::after, & i {
+    content: "";
+    position: absolute;
+    inset: 287px auto auto 40px;
+    inline-size: 150px;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    border: 9px solid oklch(0.18 0.01 280);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 4px oklch(0.85 0.01 250), 0 0 0 1px oklch(0 0 0 / 0.3);
+    background:
+      radial-gradient(oklch(0.85 0.01 250) 6px, oklch(0.4 0 0) 7px 9px, transparent 10px),
+      repeating-conic-gradient(from var(--spin), oklch(0.9 0 0 / 0.9) 0 0.7deg, transparent 1.4deg 30deg);
+  }
+  & i { inset-inline-start: 263px; }
+
+  /* The chainring, in front of the frame, turning with the wheels. */
+  & i::before {
+    content: "";
+    position: absolute;
+    inset: 48px auto auto -82px;
+    z-index: 2;
+    inline-size: 44px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(oklch(0.85 0.01 250) 5px, oklch(0.3 0 0) 6px 15px, transparent 16px),
+      repeating-conic-gradient(from var(--spin), oklch(0.3 0 0) 0 6deg, transparent 0 12deg);
+  }
+}
+
+/* 3 s moves the road 420 px: about 140 px a second, which turns a
+   150 px wheel once every 3.4 s. Every layer moves whole tiles, so it loops. */
+@keyframes ride {
+  to {
+    background-position: -420px 452px, 0 0, -260px 377px, -450px 357px, 0 0, 0 0;
+    --spin: 330deg;
+  }
+}
+
+@keyframes buzz {
+  0%, 31%, 35%, 100% { color: oklch(0.97 0.05 340); }
+  32%, 34% { color: oklch(0.5 0.1 340); text-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-bike { animation: none; }
+}

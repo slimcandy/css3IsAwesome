@@ -26,7 +26,7 @@ for (const compare of document.querySelectorAll(".compare")) {
   divider.min = "0";
   divider.max = "100";
   divider.value = "50";
-  divider.setAttribute("aria-label", `Divider: ${compare.dataset.old} on the left, 2026 on the right`);
+  divider.setAttribute("aria-label", `Divider: ${compare.dataset.old} on the left, the new version on the right`);
   divider.addEventListener("input", () => {
     compare.style.setProperty("--split", divider.value / 100);
   });

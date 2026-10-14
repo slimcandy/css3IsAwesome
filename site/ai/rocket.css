@@ -1,0 +1,88 @@
+/* AI power: the rocket in two elements. Its outline is one polygon; nose,
+   fins, stripe and window are gradient layers inside it. */
+
+@property --twinkle { syntax: "<number>"; inherits: false; initial-value: 1; }
+
+.ai-space {
+  position: relative;
+  inline-size: 640px;
+  block-size: 320px;
+  overflow: hidden;
+  view-timeline: --ai-space;
+  background:
+    radial-gradient(circle at 15% 120%, oklch(0.78 0.11 220) 0, oklch(0.45 0.13 262) 120px, oklch(0.22 0.07 275) 168px, oklch(0.8 0.14 220 / 0.6) 171px, transparent 196px),
+    radial-gradient(ellipse at 82% 18%, oklch(0.55 0.24 330 / 0.45), transparent 45%),
+    radial-gradient(ellipse at 62% 75%, oklch(0.5 0.2 270 / 0.4), transparent 50%),
+    linear-gradient(oklch(0.13 0.04 280), oklch(0.24 0.08 275));
+
+  /* Three layers of stars falling at three speeds. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(1.5px 1.5px, oklch(1 0 0 / var(--twinkle)), transparent) 0 0 / 89px 97px,
+      radial-gradient(1px 1px, oklch(0.95 0.05 250), transparent) 31px 17px / 61px 71px,
+      radial-gradient(0.8px 0.8px, oklch(1 0 0 / 0.6), transparent) 11px 29px / 43px 53px;
+    animation: ai-stars 4s linear infinite, ai-twinkle 1.3s ease-in-out infinite alternate;
+  }
+
+  & i {
+    position: absolute;
+    inset: 40px auto auto calc(50% - 40px);
+    animation: ai-hover 6s ease-in-out infinite alternate;
+
+    &::before {
+      content: "";
+      position: relative;
+      z-index: 1;
+      display: block;
+      inline-size: 80px;
+      block-size: 146px;
+      background:
+        radial-gradient(circle at 40px 60px, oklch(0.97 0.03 220) 0 2px, oklch(0.55 0.15 245) 3px 8px, oklch(0.88 0.01 250) 9px 11px, transparent 12px),
+        linear-gradient(var(--red)) 0 90px / 100% 5px no-repeat,
+        linear-gradient(oklch(0.3 0.01 270) 0 0) 0 136px / 100% 10px no-repeat,
+        linear-gradient(90deg, var(--red)) 0 0 / 100% 30px no-repeat,
+        linear-gradient(var(--red)) 37px 106px / 6px 30px no-repeat,
+        linear-gradient(90deg, var(--red)) 0 100px / 20px 46px no-repeat,
+        linear-gradient(90deg, var(--red)) 60px 100px / 20px 46px no-repeat,
+        linear-gradient(90deg, oklch(0.62 0.02 250), oklch(0.98 0.01 250) 40%, oklch(0.82 0.02 250) 70%, oklch(0.55 0.03 255));
+      --red: oklch(0.55 0.22 25), oklch(0.68 0.25 28) 40%, oklch(0.45 0.18 25);
+      clip-path: polygon(40px 0, 48px 9px, 54px 22px, 58px 38px, 60px 56px, 60px 105px, 76px 130px, 76px 146px, 60px 136px, 56px 136px, 52px 146px, 28px 146px, 24px 136px, 20px 136px, 4px 146px, 4px 130px, 20px 105px, 20px 56px, 22px 38px, 26px 22px, 32px 9px);
+    }
+
+    /* The exhaust: a blurred teardrop that flickers. */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 140px auto auto 22px;
+      inline-size: 36px;
+      block-size: 100px;
+      border-radius: 50% 50% 50% 50% / 25% 25% 75% 75%;
+      background: radial-gradient(ellipse 50% 60% at 50% 10%, white 15%, oklch(0.95 0.17 95) 35%, oklch(0.8 0.2 60) 55%, oklch(0.65 0.26 35 / 0.6) 75%, transparent);
+      filter: blur(1.5px) drop-shadow(0 0 12px oklch(0.75 0.2 55));
+      transform-origin: top;
+      animation: ai-flame 0.1s linear infinite alternate;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before, & i, & i::after { animation: none !important; }
+  }
+}
+
+@keyframes ai-stars { to { background-position: 0 388px, 31px 301px, 11px 241px; } }
+@keyframes ai-twinkle { to { --twinkle: 0.25; } }
+@keyframes ai-hover { to { translate: 0 -10px; rotate: 1.5deg; } }
+@keyframes ai-flame { to { scale: 0.9 1.15; } }
+@keyframes ai-lift-off { to { top: -280px; } }
+
+/* Lift-off follows the page scroll. */
+@supports (animation-timeline: view()) {
+  .ai-space i {
+    animation: ai-hover 6s ease-in-out infinite alternate, ai-lift-off linear both;
+    animation-timeline: auto, --ai-space;
+    animation-range: normal, cover 55% exit 60%;
+  }
+}
