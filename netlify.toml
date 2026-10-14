@@ -16,3 +16,14 @@
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+# Show the old Stylus and Sass sources as text instead of downloading them.
+[[headers]]
+  for = "/*.styl"
+  [headers.values]
+    Content-Type = "text/plain; charset=UTF-8"
+
+[[headers]]
+  for = "/*.scss"
+  [headers.values]
+    Content-Type = "text/plain; charset=UTF-8"
