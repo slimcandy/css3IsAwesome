@@ -11,7 +11,7 @@ Four drawings made only of HTML elements and CSS: a bicycle, a TV Rain logo stud
 | Loader | 8 floated divs that move only under the mouse | one sliding repeating gradient, one `clip-path` for the bubble | 11 → 2 |
 | Rocket (2021) | Sass, React rendering 100 random star divs | gradient stars, scroll-driven lift-off | 111 → 9 |
 
-**AI power.** A switch in the header swaps the right side for versions I made with Claude Code: each drawing as good as we could get it, in as little CSS as possible. It's pure CSS (`:has()` on a checkbox).
+**AI power.** Each drawing has its own switch that swaps the right side for the version I made with Claude Code: each drawing as good as we could get it, in as little CSS as possible. The switches are pure CSS (`:has()` on a checkbox): brushed metal around a window into space that lights up when on.
 
 | Drawing | AI power version | Elements | Lines |
 |---|---|---|---|

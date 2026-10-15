@@ -10,18 +10,18 @@
   inline-size: 768px;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  font: bold 6cqi/1.1 "Arial Narrow", Arial, sans-serif;
+  font: bold 1em/1.1 "Arial Narrow", Arial, sans-serif;
   text-transform: uppercase;
   color: white;
   background:
     radial-gradient(circle at 40% 30%, oklch(1 0 0 / 0.8) 0 1px, oklch(1 0 0 / 0.14) 2px 5px, oklch(1 0 0 / 0.3) 6px, transparent 7px) 0 0 / 173px 131px,
     radial-gradient(circle at 60% 40%, oklch(1 0 0 / 0.7) 0 1px, oklch(1 0 0 / 0.1) 2px 8px, oklch(1 0 0 / 0.25) 9px, transparent 10px) 61px 37px / 241px 197px,
     radial-gradient(circle at 20% 70%, oklch(1 0 0 / 0.7) 0 1px, oklch(1 0 0 / 0.12) 2px 3px, transparent 4px) 17px 83px / 109px 89px,
-    radial-gradient(4cqi at 12% 78%, oklch(0.85 0.17 80 / 0.55), transparent),
-    radial-gradient(6cqi at 30% 92%, oklch(0.7 0.2 30 / 0.45), transparent),
-    radial-gradient(5cqi at 74% 85%, oklch(0.7 0.16 150 / 0.4), transparent),
-    radial-gradient(8cqi at 90% 62%, oklch(0.75 0.15 250 / 0.45), transparent),
-    radial-gradient(5cqi at 55% 70%, oklch(0.8 0.2 340 / 0.4), transparent),
+    radial-gradient(31px at 12% 78%, oklch(0.85 0.17 80 / 0.55), transparent),
+    radial-gradient(46px at 30% 92%, oklch(0.7 0.2 30 / 0.45), transparent),
+    radial-gradient(38px at 74% 85%, oklch(0.7 0.16 150 / 0.4), transparent),
+    radial-gradient(61px at 90% 62%, oklch(0.75 0.15 250 / 0.45), transparent),
+    radial-gradient(38px at 55% 70%, oklch(0.8 0.2 340 / 0.4), transparent),
     linear-gradient(oklch(0.17 0.03 260), oklch(0.3 0.05 250));
 
   /* Rain, blurred a little because it's behind the glass. */
@@ -59,6 +59,7 @@
 
   & span {
     inset-block-start: 29cqi;
+    font-size: 6cqi;
     inset-inline-end: 9.9cqi;
     padding: 0.6cqi 0 0.6cqi 4cqi;
     background: var(--pink);

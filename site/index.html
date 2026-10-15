@@ -22,21 +22,13 @@
     <header class="sticky top-0 z-20 border-b border-ink/10 bg-wall/85 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center gap-x-4 px-4 py-3 sm:px-6">
         <a href="#top" class="shrink-0 font-display text-lg max-sm:hidden">CSS is awesome</a>
-        <nav aria-label="Drawings" class="flex min-w-0 gap-x-0.5 overflow-x-auto text-sm font-medium whitespace-nowrap max-sm:mask-r-from-75% sm:ml-auto sm:gap-x-1">
+        <nav aria-label="Drawings" class="flex min-w-0 gap-x-0.5 overflow-x-auto text-sm font-medium whitespace-nowrap sm:ml-auto sm:gap-x-1">
           <a href="#bicycle" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Bicycle</a>
           <a href="#rain" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">TV Rain</a>
           <a href="#loader" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Loader</a>
           <a href="#rocket" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Rocket</a>
           <a href="#about" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">About</a>
         </nav>
-        <!-- Tailwind Plus "toggle with right label" -->
-        <div class="flex shrink-0 items-center gap-x-2 max-sm:ml-auto">
-          <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-ink/15 p-0.5 inset-ring inset-ring-ink/5 outline-offset-2 outline-accent transition-colors duration-200 ease-in-out has-checked:bg-accent has-focus-visible:outline-2">
-            <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-ink/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
-            <input id="ai-power" type="checkbox" aria-describedby="ai-power-hint" class="absolute inset-0 size-full cursor-pointer appearance-none focus:outline-hidden" />
-          </div>
-          <label for="ai-power" class="cursor-pointer text-sm font-semibold whitespace-nowrap">AI power</label>
-        </div>
       </div>
     </header>
 
@@ -48,8 +40,8 @@
           Four drawings made only of HTML elements and CSS. I drew three of them in 2015 and the rocket in 2021, then redrew all four in 2026 with what CSS can do now.
           <strong class="font-semibold text-ink">Drag the divider</strong> on a drawing to compare the two versions, and read both stylesheets below it.
         </p>
-        <p id="ai-power-hint" class="mt-4 max-w-2xl text-lg/8 text-pretty text-ink/75">
-          Then switch on <strong class="font-semibold text-ink">AI power</strong>: the right side becomes the version I made with Claude Code, each drawing as good as we could get it in as little CSS as possible.
+        <p class="mt-4 max-w-2xl text-lg/8 text-pretty text-ink/75">
+          Each drawing also has an <strong class="font-semibold text-ink">AI power</strong> switch: it turns the right side into the version I made with Claude Code, as good as we could get it in as little CSS as possible.
         </p>
       </section>
 
@@ -57,7 +49,13 @@
       <article id="bicycle" class="exhibit">
         <div class="exhibit-head">
           <p class="exhibit-number">No. 1 · March 2015</p>
-          <h2 class="exhibit-title">Bicycle</h2>
+          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+            <h2 class="exhibit-title">Bicycle</h2>
+            <label class="ai-switch">
+              <span class="ai-switch-control"><input type="checkbox" role="switch" /><span class="ai-switch-knob"></span></span>
+              AI power
+            </label>
+          </div>
           <p class="exhibit-text">Hover the 2015 bicycle and it rides through the desert, with a flickering neon sign. It only worked with a mouse. The 2026 one also rides on keyboard focus and on tap.</p>
         </div>
 
@@ -114,7 +112,13 @@
       <article id="rain" class="exhibit">
         <div class="exhibit-head">
           <p class="exhibit-number">No. 2 · March 2015</p>
-          <h2 class="exhibit-title">TV Rain logo</h2>
+          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+            <h2 class="exhibit-title">TV Rain logo</h2>
+            <label class="ai-switch">
+              <span class="ai-switch-control"><input type="checkbox" role="switch" /><span class="ai-switch-knob"></span></span>
+              AI power
+            </label>
+          </div>
           <p class="exhibit-text">A study of the TV Rain (Дождь) logo from 2015, a fan piece. The 2015 page played a 7.5 MB video behind it and broke at any width but 768 px. In 2026 the rain is gradients and the logo scales with its box.</p>
         </div>
 
@@ -163,7 +167,13 @@
       <article id="loader" class="exhibit">
         <div class="exhibit-head">
           <p class="exhibit-number">No. 3 · March 2015</p>
-          <h2 class="exhibit-title">Loader</h2>
+          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+            <h2 class="exhibit-title">Loader</h2>
+            <label class="ai-switch">
+              <span class="ai-switch-control"><input type="checkbox" role="switch" /><span class="ai-switch-knob"></span></span>
+              AI power
+            </label>
+          </div>
           <p class="exhibit-text">A loading bubble in the colours of an old social network. In 2015 the stripes moved only under the mouse, so a loader that should show “wait” stood still. The 2026 one always moves, unless you ask your system for less motion.</p>
         </div>
 
@@ -207,7 +217,13 @@
       <article id="rocket" class="exhibit">
         <div class="exhibit-head">
           <p class="exhibit-number">No. 4 · June 2021</p>
-          <h2 class="exhibit-title">Rocket</h2>
+          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+            <h2 class="exhibit-title">Rocket</h2>
+            <label class="ai-switch">
+              <span class="ai-switch-control"><input type="checkbox" role="switch" /><span class="ai-switch-knob"></span></span>
+              AI power
+            </label>
+          </div>
           <p class="exhibit-text">Drawn in 2021 inside a React app: Sass for the styles, and JavaScript to scatter 100 star elements, new ones on every render. The 2026 rocket needs no JavaScript, and it lifts off as you scroll past it.</p>
         </div>
 
