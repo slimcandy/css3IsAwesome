@@ -4,17 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CSS is awesome: 2015 and 2026</title>
-    <meta name="description" content="Four drawings made of HTML and CSS in 2015 and 2021, redrawn with 2026 CSS. Drag the divider to compare them." />
+    <meta name="description" content="Three drawings made of HTML and CSS in 2015 and 2021, redrawn with 2026 CSS. Drag the divider to compare them." />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="2026/bicycle.css" />
-    <link rel="stylesheet" href="2026/rain.css" />
     <link rel="stylesheet" href="2026/loader.css" />
     <link rel="stylesheet" href="2026/rocket.css" />
     <link rel="stylesheet" href="ai/bicycle.css" />
     <link rel="stylesheet" href="ai/rocket.css" />
-    <link rel="stylesheet" href="ai/rain.css" />
     <link rel="stylesheet" href="ai/loader.css" />
     <script src="page.js" defer></script>
   </head>
@@ -24,7 +22,6 @@
         <a href="#top" class="shrink-0 font-display text-lg max-sm:hidden">CSS is awesome</a>
         <nav aria-label="Drawings" class="flex min-w-0 gap-x-0.5 overflow-x-auto text-sm font-medium whitespace-nowrap sm:ml-auto sm:gap-x-1">
           <a href="#bicycle" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Bicycle</a>
-          <a href="#rain" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">TV Rain</a>
           <a href="#loader" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Loader</a>
           <a href="#rocket" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">Rocket</a>
           <a href="#about" class="rounded-md px-2 py-2 text-ink/70 hover:bg-ink/5 hover:text-ink sm:px-3">About</a>
@@ -37,7 +34,7 @@
         <p class="text-sm font-semibold tracking-wide text-accent uppercase">2015 → 2026</p>
         <h1 class="mt-3 font-display text-5xl text-balance sm:text-7xl">CSS is awesome</h1>
         <p class="mt-6 max-w-2xl text-lg/8 text-pretty text-ink/75">
-          Four drawings made only of HTML elements and CSS. I drew three of them in 2015 and the rocket in 2021, then redrew all four in 2026 with what CSS can do now.
+          Three drawings made only of HTML elements and CSS. I drew two of them in 2015 and the rocket in 2021, then redrew all three in 2026 with what CSS can do now.
           <strong class="font-semibold text-ink">Drag the divider</strong> on a drawing to compare the two versions, and read both stylesheets below it.
         </p>
         <p class="mt-4 max-w-2xl text-lg/8 text-pretty text-ink/75">
@@ -108,65 +105,10 @@
         </div>
       </article>
 
-      <!-- 2. TV Rain -->
-      <article id="rain" class="exhibit">
-        <div class="exhibit-head">
-          <p class="exhibit-number">No. 2 · March 2015</p>
-          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
-            <h2 class="exhibit-title">TV Rain logo</h2>
-            <label class="ai-switch">
-              <span class="ai-switch-control"><input type="checkbox" role="switch" /><span class="ai-switch-knob"></span></span>
-              AI power
-            </label>
-          </div>
-          <p class="exhibit-text">A study of the TV Rain (Дождь) logo from 2015, a fan piece. The 2015 page played a 7.5 MB video behind it and broke at any width but 768 px. In 2026 the rain is gradients and the logo scales with its box.</p>
-        </div>
-
-        <div class="exhibit-body">
-          <div class="compare" data-width="768" data-height="432" data-crop="28 20" data-old="2015">
-            <div class="layer no-ai">
-              <div class="rain" role="img" aria-label="The TV Rain logo, Дождь, over falling rain">
-                <p class="name" lang="ru" aria-hidden="true">До<span>///</span>дь</p>
-                <p class="slogan" aria-hidden="true">Optimistic channel</p>
-                <p class="live" aria-hidden="true">Live</p>
-              </div>
-            </div>
-            <div class="layer ai">
-              <div class="ai-rain" role="img" aria-label="The TV Rain logo, Дождь, behind a wet window at night"><b lang="ru" aria-hidden="true">До<i>///</i>дь</b><span aria-hidden="true">Optimistic channel</span></div>
-            </div>
-            <div class="layer old"><iframe scrolling="no" src="2015/rain/" title="The 2015 TV Rain logo" loading="lazy" tabindex="-1"></iframe></div>
-          </div>
-
-          <dl class="placard">
-            <div><dt>2015</dt><dd>Fixed pixel sizes, two tails made of a gradient and a rotated border triangle, and a video. No <code>&lt;meta charset&gt;</code>, so without a charset header the Cyrillic shows as “Ð”Ð¾”.</dd></div>
-            <div><dt>2026</dt><dd>Sizes in container units, so the logo fits any box. <code>clip-path</code> cuts the slanted ends. The pink is a wide-gamut <code>oklch()</code> colour.</dd></div>
-            <div><dt>Elements</dt><dd>7 → 5</dd></div>
-            <div><dt>Page weight</dt><dd>7.5 MB of video → 0 bytes</dd></div>
-            <div class="ai"><dt>AI power</dt><dd>4 elements. Rain falls behind drops on the glass and blurred city lights. The LIVE dot pulses through an animated <code>@property</code>.</dd></div>
-            <div><dt>Modern CSS</dt><dd class="flex flex-wrap gap-1.5"><span class="badge">container units</span><span class="badge">clip-path</span><span class="badge">oklch</span><span class="badge">gradients</span><span class="badge">reduced motion</span></dd></div>
-          </dl>
-        </div>
-
-        <div class="code-pair">
-          <figure class="code" data-src="2015/rain/tvrain.styl">
-            <figcaption><span>2015 · tvrain.styl</span><span data-lines></span></figcaption>
-            <pre><code><a href="2015/rain/tvrain.styl">Open tvrain.styl</a></code></pre>
-          </figure>
-          <figure class="code no-ai" data-src="2026/rain.css">
-            <figcaption><span>2026 · rain.css</span><span data-lines></span></figcaption>
-            <pre><code><a href="2026/rain.css">Open rain.css</a></code></pre>
-          </figure>
-          <figure class="code ai" data-src="ai/rain.css">
-            <figcaption><span>AI power · rain.css</span><span data-lines></span></figcaption>
-            <pre><code><a href="ai/rain.css">Open rain.css</a></code></pre>
-          </figure>
-        </div>
-      </article>
-
-      <!-- 3. Loader -->
+      <!-- 2. Loader -->
       <article id="loader" class="exhibit">
         <div class="exhibit-head">
-          <p class="exhibit-number">No. 3 · March 2015</p>
+          <p class="exhibit-number">No. 2 · March 2015</p>
           <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
             <h2 class="exhibit-title">Loader</h2>
             <label class="ai-switch">
@@ -213,10 +155,10 @@
         </div>
       </article>
 
-      <!-- 4. Rocket -->
+      <!-- 3. Rocket -->
       <article id="rocket" class="exhibit">
         <div class="exhibit-head">
-          <p class="exhibit-number">No. 4 · June 2021</p>
+          <p class="exhibit-number">No. 3 · June 2021</p>
           <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
             <h2 class="exhibit-title">Rocket</h2>
             <label class="ai-switch">
@@ -277,7 +219,7 @@
         <h2 class="font-display text-3xl">About</h2>
         <div class="mt-6 grid gap-10 text-ink/80 md:grid-cols-2">
           <div class="space-y-4">
-            <p>The drawings are plain HTML and CSS with no build step. The 2015 and 2021 versions are the original files, shown in frames as they were, minus the music, the video and a font I can’t share.</p>
+            <p>The drawings are plain HTML and CSS with no build step. The 2015 and 2021 versions are the original files, shown in frames as they were, minus the music and a font I can’t share.</p>
             <p>“Elements” counts the HTML elements in each drawing. Line counts skip comments and blank lines.</p>
             <p>
               Source on <a class="link" href="https://github.com/slimcandy/css3IsAwesome">GitHub</a>. The React version from 2021 is kept at the tag
