@@ -1,7 +1,29 @@
 {
   "name": "css3-is-awesome",
   "private": true,
+  "description": "Three CSS drawings from 2015 and 2021, redrawn in 2026 by hand and with Claude Code. Drag a divider to compare.",
+  "keywords": [
+    "css",
+    "css-art",
+    "css-animation",
+    "clip-path",
+    "scroll-driven-animations",
+    "tailwindcss",
+    "claude-code"
+  ],
+  "homepage": "https://css.avolkov.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slimcandy/css3IsAwesome.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slimcandy/css3IsAwesome/issues"
+  },
+  "author": "Aleksei Volkov",
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "tailwindcss -i site/input.css -o site/style.css --watch",
     "prebuild": "sh scripts/fetch-fonts.sh",
