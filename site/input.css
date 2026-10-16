@@ -367,7 +367,7 @@
      and a deeper pink, so everything clears 7:1. */
   @media (prefers-contrast: more) {
     :root {
-      --color-accent: light-dark(oklch(0.45 0.22 2), oklch(0.8 0.17 2));
+      --color-accent: light-dark(oklch(0.44 0.22 2), oklch(0.8 0.17 2));
     }
     .exhibit-text,
     .placard dd,
@@ -380,6 +380,10 @@
   /* Forced colours (Windows high contrast) drop backgrounds: draw the divider,
      its grip and the switch with borders, and show "on" in the Highlight colour. */
   @media (forced-colors: active) {
+    /* The drawings are pictures, made of gradients: keep their colours. */
+    .compare .layer {
+      forced-color-adjust: none;
+    }
     .compare .line {
       border-inline-start: 2px solid;
       background: none;
