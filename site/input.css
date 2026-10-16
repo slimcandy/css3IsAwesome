@@ -97,7 +97,7 @@
     @apply min-w-0 overflow-hidden rounded-xl bg-card ring-1 ring-ink/10;
 
     & figcaption {
-      @apply flex justify-between gap-4 border-b border-ink/10 px-4 py-2.5 font-mono text-xs text-ink/70;
+      @apply flex justify-between gap-4 border-b border-ink/10 px-4 py-2.5 font-mono text-xs text-ink/75;
     }
     & pre {
       @apply max-h-96 overflow-auto p-4 font-mono text-xs/5 [tab-size:2];
@@ -360,6 +360,38 @@
     }
     .ai-switch-knob {
       transition: none;
+    }
+  }
+
+  /* "Increase contrast" (macOS) and similar: full ink for the secondary text
+     and a deeper pink, so everything clears 7:1. */
+  @media (prefers-contrast: more) {
+    :root {
+      --color-accent: light-dark(oklch(0.45 0.22 2), oklch(0.8 0.17 2));
+    }
+    .exhibit-text,
+    .placard dd,
+    .badge,
+    .code figcaption {
+      color: var(--color-ink);
+    }
+  }
+
+  /* Forced colours (Windows high contrast) drop backgrounds: draw the divider,
+     its grip and the switch with borders, and show "on" in the Highlight colour. */
+  @media (forced-colors: active) {
+    .compare .line {
+      border-inline-start: 2px solid;
+      background: none;
+    }
+    .compare .grip,
+    .ai-switch-control,
+    .ai-switch-knob {
+      border: 2px solid;
+    }
+    .ai-switch-control:has(:checked) .ai-switch-knob {
+      background: Highlight;
+      forced-color-adjust: none;
     }
   }
 }
