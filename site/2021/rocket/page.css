@@ -8,3 +8,11 @@ body {
   height: 320px;
   overflow: hidden;
 }
+
+/* Also not from 2021: hold the stars, the rocket and the flames still when the
+   visitor asks the system for less motion. The 2026 drawings do the same. */
+@media (prefers-reduced-motion: reduce) {
+  .space * {
+    animation-play-state: paused !important;
+  }
+}
