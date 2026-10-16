@@ -27,10 +27,12 @@
   "scripts": {
     "dev": "tailwindcss -i site/input.css -o site/style.css --watch",
     "prebuild": "sh scripts/fetch-fonts.sh",
-    "build": "tailwindcss -i site/input.css -o site/style.css --minify"
+    "build": "tailwindcss -i site/input.css -o site/style.css --minify",
+    "card": "node scripts/share-card.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3",
+    "playwright-core": "1.63.0",
     "tailwindcss": "4.3.3"
   }
 }
